@@ -1,6 +1,8 @@
 from src.algorithm.playfair import Playfair
 from src.algorithm.affine import Affine
 from src.algorithm.hill import Hill
+from src.algorithm.vigenere import Vigenere
+from src.algorithm.vigenere_full import FullVigenere
 
 def request_processor(text, key, algorithm, mode, is_binary):
     try:
@@ -22,6 +24,8 @@ def algorithm_processor(text, key, algorithm, mode, is_binary):
         "playfair": Playfair(text, key),
         "affine": Affine(text, key),
         "hill": Hill(text, key),
+        "vigenere": Vigenere(text,key),
+        "vigenere_full": FullVigenere(text,key),
     }
 
     algo_invalid = "algorithm invalid"
@@ -56,3 +60,4 @@ def output_to_file(filename, content):
     f = open(filename,"w+")
     f.write(content)
     f.close()
+    

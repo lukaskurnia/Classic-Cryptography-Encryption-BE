@@ -80,6 +80,24 @@ curl --location --request POST 'localhost:5000/text' \
 --form 'algorithm=hill' \
 --form 'mode=encrypt'
 ```
+### Vigenere
+
+```bash
+curl --location --request POST 'localhost:5000/text' \
+--form 'key=sony' \
+--form 'text=thisplaintext' \
+--form 'algorithm=vigenere' \
+```
+
+### Full Vigenere
+
+```bash
+curl --location --request POST 'localhost:5000/text' \
+--form 'key=sony' \
+--form 'text=thisplaintext' \
+--form 'algorithm=vigenere_full' \
+--form 'mode=encrypt'
+```
 
 ## File Text
 ```bash
