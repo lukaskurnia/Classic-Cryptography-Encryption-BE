@@ -1,0 +1,76 @@
+from src.algorithm import general
+import math
+import numpy as np
+
+def is_square(number):
+    root = math.sqrt(number)
+    if int(root + 0.5) ** 2 == number:
+        return True
+    else:
+        return False
+
+def sqrt(number):
+    return int(math.sqrt(number) + 0.5)
+
+def create_n_gram(chars, n):
+    ngrams = []
+    ngram = []
+
+    chars_append = chars
+    chars_mod = len(chars) % n
+    if chars_mod != 0:
+        chars_append +=  'x' * (n - chars_mod)
+
+    for char in chars_append:
+        ngram.append(general.char_to_order(char))
+
+        if len(ngram) == n:
+            ngrams.append(ngram)
+            ngram = []
+    
+    return ngrams
+
+class Hill:
+    def __init__(self, text, key):
+        self.text = text
+        self.key = key
+
+    def preprocess(self):
+        # preprocess key
+        key_length = len(self.key)
+        if not(is_square(key_length)):
+            raise Exception("length of key is not perfect square", 400)
+
+        key_sqrt = sqrt(key_length)
+        self.key = general.create_square(self.key, key_sqrt)
+        
+        # preprocess text
+        text = self.text.lower()
+        text = general.sanitize(text)
+        self.ngrams = create_n_gram(self.text, key_sqrt)
+
+    def encrypt(self):
+        chiper_text = ''
+        k = np.asmatrix(self.key)
+        for ngram in self.ngrams:
+            p = np.array(ngram)
+            c = np.matmul(k, p).tolist()
+
+            for char in c[0]:
+                chiper_text += general.order_to_char(char)
+            
+        return chiper_text
+  
+    def decrypt(self):
+        chiper_text = ''
+
+        # k = np.asmatrix(self.key)
+        # k_inverse = np.linalg.inv(k)
+        # for ngram in self.ngrams:
+        #     p = np.array(ngram)
+        #     c = np.matmul(k_inverse, p).tolist()
+
+        #     for char in c[0]:
+        #         chiper_text += general.order_to_char(char)
+            
+        return chiper_text

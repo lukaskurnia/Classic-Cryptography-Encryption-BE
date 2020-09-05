@@ -33,3 +33,17 @@ def order_to_char(order):
         order += 26
 
     return chr(order + ord('a'))    
+
+# create square matrix with given length from given array. 
+# Matrix will be filled with priority from left to right then top to bottom.
+def create_square(arr, length):
+    rows, cols = (length, length) 
+    square = [] 
+    idx = 0
+    for i in range(cols): 
+        col = [] 
+        for j in range(rows): 
+            col.append(arr[idx])
+            idx += 1 
+        square.append(col)
+    return square

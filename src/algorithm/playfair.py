@@ -23,18 +23,6 @@ def create_bigram(text):
     
     return bigrams
 
-def create_square(chars):
-    rows, cols = (5, 5) 
-    square = [] 
-    idx = 0
-    for i in range(cols): 
-        col = [] 
-        for j in range(rows): 
-            col.append(chars[idx])
-            idx += 1 
-        square.append(col)
-    return square
-
 def get_index(square, char):
     rows, cols = (5, 5)
     for i in range(cols):
@@ -74,7 +62,7 @@ class Playfair:
         key += const.ALPHABET
         key = general.remove_duplicate_char(key)
         key = general.remove_char(key, 'j')
-        self.key = create_square(key)
+        self.key = general.create_square(key, 5)
 
     def encrypt(self):
         chiper_text = ''

@@ -1,5 +1,6 @@
 from src.algorithm.playfair import Playfair
 from src.algorithm.affine import Affine
+from src.algorithm.hill import Hill
 
 def request_processor(text, key, algorithm, mode):
     try:
@@ -16,9 +17,11 @@ def request_processor(text, key, algorithm, mode):
             return "internal server error", 500           
 
 def algorithm_processor(text, key, algorithm, mode):
+    # Add new algorithm here
     algo_switcher = {
         "playfair": Playfair(text, key),
         "affine": Affine(text, key),
+        "hill": Hill(text, key),
     }
 
     algo_invalid = "algorithm invalid"
@@ -28,14 +31,11 @@ def algorithm_processor(text, key, algorithm, mode):
 
     obj.preprocess()
     
-    mode_switcher = {
-        "encrypt": obj.encrypt(),
-        "decrypt": obj.decrypt()
-    }
-
-    mode_invalid = "mode invalid"
-    chipper_text = mode_switcher.get(mode, mode_invalid)
-    if (chipper_text == mode_invalid):
-        raise Exception(mode_invalid, 400) 
+    if mode == "encrypt":
+        chipper_text = obj.encrypt()
+    elif mode == "decrypt": 
+        chipper_text = obj.decrypt()
+    else:
+        raise Exception("mode invalid", 400) 
 
     return chipper_text
