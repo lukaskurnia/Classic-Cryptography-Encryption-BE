@@ -12,9 +12,7 @@ def request_processor(text, key, algorithm, mode):
             # only uncomment below code for debugging purpose
             raise err
             
-            return "internal server error", 500
-
-           
+            return "internal server error", 500           
 
 def algorithm_processor(text, key, algorithm, mode):
     algo_switcher = {
