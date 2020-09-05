@@ -3,6 +3,7 @@ from src.algorithm.affine import Affine
 from src.algorithm.hill import Hill
 from src.algorithm.vigenere import Vigenere
 from src.algorithm.vigenere_full import FullVigenere
+from src.algorithm.vigenere_auto import AutoKeyVigenere
 
 def request_processor(text, key, algorithm, mode, is_binary):
     try:
@@ -26,6 +27,7 @@ def algorithm_processor(text, key, algorithm, mode, is_binary):
         "hill": Hill(text, key),
         "vigenere": Vigenere(text,key),
         "vigenere_full": FullVigenere(text,key),
+        "vigenere_auto": AutoKeyVigenere(text,key),
     }
 
     algo_invalid = "algorithm invalid"

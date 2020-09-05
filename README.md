@@ -87,6 +87,7 @@ curl --location --request POST 'localhost:5000/text' \
 --form 'key=sony' \
 --form 'text=thisplaintext' \
 --form 'algorithm=vigenere' \
+--form 'mode=encrypt'
 ```
 
 ### Full Vigenere
@@ -96,6 +97,16 @@ curl --location --request POST 'localhost:5000/text' \
 --form 'key=sony' \
 --form 'text=thisplaintext' \
 --form 'algorithm=vigenere_full' \
+--form 'mode=encrypt'
+```
+
+### Auto-Key Vigenere
+
+```bash
+curl --location --request POST 'localhost:5000/text' \
+--form 'key=indo' \
+--form 'text=negara penghasil minyak' \
+--form 'algorithm=vigenere_auto' \
 --form 'mode=encrypt'
 ```
 
