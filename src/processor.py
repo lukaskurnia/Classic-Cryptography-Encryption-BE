@@ -51,3 +51,8 @@ def convert_file_to_string(data):
     file = data.read()
     decoded = file.decode('utf-8')
     return decoded.replace('\n', '')
+
+def output_to_file(filename, content):
+    f = open(filename,"w+")
+    f.write(content)
+    f.close()

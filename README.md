@@ -98,3 +98,13 @@ curl --location --request POST 'localhost:5000/file_binary' \
 --form 'algorithm=playfair' \
 --form 'mode=encrypt'
 ```
+
+## Output to file
+Add url parameter `output` with value `file`
+```bash
+curl --location --request POST 'localhost:5000/text?output=file' \
+--form 'key=JALANGANESHASEPULUH' \
+--form 'text=halo' \
+--form 'algorithm=playfair' \
+--form 'mode=encrypt'
+```
