@@ -91,3 +91,10 @@ curl --location --request POST 'localhost:5000/file_text' \
 ```
 
 ## File binary
+```bash
+curl --location --request POST 'localhost:5000/file_binary' \
+--form 'text=@/home/rika/Downloads/test.png' \
+--form 'key=JALANGANESHASEPULUH' \
+--form 'algorithm=playfair' \
+--form 'mode=encrypt'
+```
