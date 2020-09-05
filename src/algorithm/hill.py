@@ -55,7 +55,6 @@ class Hill:
         for ngram in self.ngrams:
             p = np.array(ngram)
             c = np.matmul(k, p).tolist()
-
             for char in c[0]:
                 chiper_text += general.order_to_char(char)
             
@@ -64,13 +63,26 @@ class Hill:
     def decrypt(self):
         chiper_text = ''
 
-        # k = np.asmatrix(self.key)
-        # k_inverse = np.linalg.inv(k)
-        # for ngram in self.ngrams:
-        #     p = np.array(ngram)
-        #     c = np.matmul(k_inverse, p).tolist()
+        # calculate inverse matrix
+        k = np.asmatrix(self.key)
+        k_det = round(np.linalg.det(k))
+        det_inverse = general.mod_inverse(k_det % 26, 26)
+        k_inverse = np.linalg.inv(k)
+        k_adjoint = k_inverse * k_det
+        self.key = k_adjoint.tolist()
 
-        #     for char in c[0]:
-        #         chiper_text += general.order_to_char(char)
+        for col in range(len(self.key)):
+            for row in range(len(self.key)):
+                self.key[col][row] = round(self.key[col][row])
+                self.key[col][row] *= det_inverse
+                self.key[col][row] %= 26
+        
+        for ngram in self.ngrams:
+            p = np.array(ngram)
+            k = np.asmatrix(self.key)
+            c = np.matmul(k, p).tolist()
+
+            for char in c[0]:
+                chiper_text += general.order_to_char(char)
             
         return chiper_text

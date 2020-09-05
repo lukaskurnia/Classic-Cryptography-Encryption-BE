@@ -47,3 +47,11 @@ def create_square(arr, length):
             idx += 1 
         square.append(col)
     return square
+
+# X that satisfy aX = 1 mod m
+def mod_inverse(a, m) : 
+    a = a % m; 
+    for x in range(1, m) : 
+        if ((a * x) % m == 1) : 
+            return x 
+    return 1

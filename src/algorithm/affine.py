@@ -1,13 +1,6 @@
 from src.algorithm import general
 import math 
 
-# X that satisfy aX = 1 mod m
-def mod_inverse(a, m) : 
-    a = a % m; 
-    for x in range(1, m) : 
-        if ((a * x) % m == 1) : 
-            return x 
-    return 1
 
 class Affine:
     def __init__(self, text, key):
@@ -42,7 +35,7 @@ class Affine:
     def decrypt(self):
         chiper_text = ''
         for char in self.text:
-            m_inverse = mod_inverse(self.m, self.n)
+            m_inverse = general.mod_inverse(self.m, self.n)
             chiper_char = m_inverse * (general.char_to_order(char) - self.b )
             chiper_text += general.order_to_char(chiper_char)
 

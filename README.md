@@ -63,3 +63,15 @@ curl --location --request POST 'localhost:5000/text' \
     "mode": "encrypt"
 }'
 ```
+
+## Hill
+```bash
+curl --location --request POST 'localhost:5000/text' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "key": [3,3,2,5],
+    "text": "help",
+    "algorithm": "hill",
+    "mode": "encrypt"
+}'
+```
