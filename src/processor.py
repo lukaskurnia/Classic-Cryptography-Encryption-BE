@@ -4,6 +4,7 @@ from src.algorithm.hill import Hill
 from src.algorithm.vigenere import Vigenere
 from src.algorithm.vigenere_full import FullVigenere
 from src.algorithm.vigenere_auto import AutoKeyVigenere
+from src.algorithm.vigenere_extended import ExtendedVigenere
 
 def request_processor(text, key, algorithm, mode, is_binary):
     try:
@@ -28,6 +29,7 @@ def algorithm_processor(text, key, algorithm, mode, is_binary):
         "vigenere": Vigenere(text,key),
         "vigenere_full": FullVigenere(text,key),
         "vigenere_auto": AutoKeyVigenere(text,key),
+        "vigenere_extended": ExtendedVigenere(text,key,is_binary),
     }
 
     algo_invalid = "algorithm invalid"
@@ -36,8 +38,7 @@ def algorithm_processor(text, key, algorithm, mode, is_binary):
         raise Exception(algo_invalid, 400) 
 
     if is_binary:
-        # TODO: lukas ubah ini jadi nama algorithmnya ntar 
-        if algorithm != "test":
+        if algorithm != "vigenere_extended":
             raise Exception(f"binary file can't be {mode}ed with {algorithm}", 400) 
 
         obj.preprocess(is_binary)
