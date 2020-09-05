@@ -6,10 +6,15 @@ def request_processor(text, key, algorithm, mode):
         return chipper_text, 200
 
     except Exception as err:
-        status_code = 500
         if (len(err.args) > 1):
-            status_code =  err.args[1]
-        return err.args[0], status_code    
+            return err.args[0], err.args[1]
+        else:
+            # only uncomment below code for debugging purpose
+            raise err
+            
+            return "internal server error", 500
+
+           
 
 def algorithm_processor(text, key, algorithm, mode):
     algo_switcher = {
