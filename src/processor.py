@@ -1,4 +1,5 @@
 from src.algorithm.playfair import Playfair
+from src.algorithm.affine import Affine
 
 def request_processor(text, key, algorithm, mode):
     try:
@@ -16,7 +17,8 @@ def request_processor(text, key, algorithm, mode):
 
 def algorithm_processor(text, key, algorithm, mode):
     algo_switcher = {
-        "playfair": Playfair(text, key) 
+        "playfair": Playfair(text, key),
+        "affine": Affine(text, key),
     }
 
     algo_invalid = "algorithm invalid"
@@ -24,6 +26,8 @@ def algorithm_processor(text, key, algorithm, mode):
     if (obj == algo_invalid):
         raise Exception(algo_invalid, 400) 
 
+    obj.preprocess()
+    
     mode_switcher = {
         "encrypt": obj.encrypt(),
         "decrypt": obj.decrypt()

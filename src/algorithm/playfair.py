@@ -58,13 +58,18 @@ def get_element(square, i, j):
 
 class Playfair:
     def __init__(self, text, key):
+        self.text = text
+        self.key = key
+
+    def preprocess(self):
         # Preprocess text
+        text = self.text.lower()
         text = general.sanitize(text)
         text = general.replace_char(text, 'j', 'i')
         self.bigrams = create_bigram(text)
         
         # Preprocess key
-        key = key.lower()
+        key = self.key.lower()
         key = general.sanitize(key)
         key += const.ALPHABET
         key = general.remove_duplicate_char(key)

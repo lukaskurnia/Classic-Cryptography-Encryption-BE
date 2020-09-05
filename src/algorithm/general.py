@@ -17,3 +17,19 @@ def sanitize(text):
 # Example: replace_char('test', 't', 'b') -> besb 
 def replace_char(text, old_char, new_char):
     return text.replace(old_char, new_char)
+
+# return order of given character in alphabetical rank, start from 0
+# Example: char_to_order('a') -> 0, char_to_order('k') -> 10
+def char_to_order(char):
+    return ord(char.lower()) - ord('a')
+
+# return lowercase character of given order in alphabetical rank, start from 0
+# Example: order_to_char('0') -> a, order_to_char('10') -> k, order_to_char('26') -> a
+def order_to_char(order):
+    while order >= 26:
+        order -= 26
+    
+    while order < 0:
+        order += 26
+
+    return chr(order + ord('a'))    

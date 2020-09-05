@@ -33,3 +33,33 @@ python3 app.py
 ```
 ## Access
 Development server will listen in http://localhost:5000
+
+# Sample Request
+
+## Playfair
+
+```bash
+curl --location --request POST 'localhost:5000/text' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "key": "JALANGANESHASEPULUH",
+    "text": "halowakgeng",
+    "algorithm": "playfair",
+    "mode": "encrypt"
+}'
+```
+
+## Affine
+```bash
+curl --location --request POST 'localhost:5000/text' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "key": {
+        "m": 7,
+        "b": 10
+    },
+    "text": "wakgeng",
+    "algorithm": "affine",
+    "mode": "encrypt"
+}'
+```
