@@ -80,6 +80,15 @@ curl --location --request POST 'localhost:5000/text' \
 --form 'algorithm=hill' \
 --form 'mode=encrypt'
 ```
+### Vigenere
+
+```bash
+curl --location --request POST 'http://127.0.0.1:5000/text' \
+--form 'key=sony' \
+--form 'text=thisplaintext' \
+--form 'algorithm=vigenere' \
+```
+
 
 ## File Text
 ```bash
