@@ -1,6 +1,7 @@
 from src.algorithm import general
 import math
 import numpy as np
+import json
 
 def is_square(number):
     root = math.sqrt(number)
@@ -37,12 +38,19 @@ class Hill:
 
     def preprocess(self):
         # preprocess key
-        key_length = len(self.key)
+        try:
+            key =  json.loads(self.key)['key']
+        except KeyError as err:
+            raise Exception(f'required key {err}', 400)
+        except Exception as err:
+            raise Exception(err.args, 400)
+        
+        key_length = len(key)
         if not(is_square(key_length)):
             raise Exception("length of key is not perfect square", 400)
 
         key_sqrt = sqrt(key_length)
-        self.key = general.create_square(self.key, key_sqrt)
+        self.key = general.create_square(key, key_sqrt)
         
         # preprocess text
         text = self.text.lower()

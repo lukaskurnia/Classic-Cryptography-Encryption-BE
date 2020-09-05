@@ -8,6 +8,7 @@ api = Api(app)
 # adding the defined resources along with their corresponding urls 
 api.add_resource(routes.Hello, '/') 
 api.add_resource(routes.Text, '/text') 
+api.add_resource(routes.FileText, '/file_text') 
 
 if __name__ == '__main__': 
     app.run(debug = True) 

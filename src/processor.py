@@ -39,3 +39,8 @@ def algorithm_processor(text, key, algorithm, mode):
         raise Exception("mode invalid", 400) 
 
     return chipper_text
+
+def convert_file_to_string(data):
+    file = data.read()
+    decoded = file.decode('utf-8')
+    return decoded.replace('\n', '')

@@ -1,6 +1,6 @@
 from src.algorithm import general
 import math 
-
+import json
 
 class Affine:
     def __init__(self, text, key):
@@ -15,10 +15,17 @@ class Affine:
 
         # Preprocess key
         try:
-            self.m = int(self.key['m'])
-            self.b = int(self.key['b'])
+            key =  json.loads(self.key)
+        except:
+            raise Exception("can't decode json key", 400)
+
+        try:
+            self.m = int(key['m'])
+            self.b = int(key['b'])
         except ValueError as err:
             raise Exception("key is not integer", 400)
+        except KeyError as err:
+            raise Exception(f'required key {err}', 400)
 
         self.n = 26
         if math.gcd(self.m, self.n) != 1:        

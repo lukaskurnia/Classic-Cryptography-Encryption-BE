@@ -36,42 +36,58 @@ Development server will listen in http://localhost:5000
 
 # Sample Request
 
-## Playfair
+## Text
+
+### Playfair
 
 ```bash
 curl --location --request POST 'localhost:5000/text' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "key": "JALANGANESHASEPULUH",
-    "text": "halowakgeng",
-    "algorithm": "playfair",
-    "mode": "encrypt"
-}'
+--form 'key=JALANGANESHASEPULUH' \
+--form 'text=halowakgeng' \
+--form 'algorithm=playfair' \
+--form 'mode=encrypt'
 ```
 
-## Affine
+### Affine
 ```bash
 curl --location --request POST 'localhost:5000/text' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "key": {
+--form 'text=paymoremoney' \
+--form 'key={
         "m": 7,
         "b": 10
-    },
-    "text": "wakgeng",
-    "algorithm": "affine",
-    "mode": "encrypt"
-}'
+    }' \
+--form 'algorithm=affine' \
+--form 'mode=encrypt'
 ```
 
-## Hill
+### Hill
 ```bash
 curl --location --request POST 'localhost:5000/text' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "key": [3,3,2,5],
-    "text": "help",
-    "algorithm": "hill",
-    "mode": "encrypt"
-}'
+--form 'text=paymoremoney' \
+--form 'key={
+    "key": [
+        17,
+        17,
+        5,
+        21,
+        18,
+        21,
+        2,
+        2,
+        19
+    ]
+}' \
+--form 'algorithm=hill' \
+--form 'mode=encrypt'
 ```
+
+## File Text
+```bash
+curl --location --request POST 'localhost:5000/file_text' \
+--form 'text=@/home/rika/Downloads/coba.txt' \
+--form 'key=JALANGANESHASEPULUH' \
+--form 'algorithm=playfair' \
+--form 'mode=encrypt'
+```
+
+## File binary
