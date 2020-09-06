@@ -29,7 +29,7 @@ def algorithm_processor(text, key, algorithm, mode, is_binary):
         "vigenere": Vigenere(text,key),
         "vigenere_full": FullVigenere(text,key),
         "vigenere_auto": AutoKeyVigenere(text,key),
-        "vigenere_extended": ExtendedVigenere(text,key,is_binary),
+        "vigenere_extended": ExtendedVigenere(text,key),
     }
 
     algo_invalid = "algorithm invalid"

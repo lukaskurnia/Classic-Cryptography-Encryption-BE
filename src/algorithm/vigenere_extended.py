@@ -2,12 +2,11 @@ from src.algorithm import general
 from src.algorithm import const
 
 class ExtendedVigenere:
-    def __init__(self, text, key, is_binary):
+    def __init__(self, text, key):
         self.text = text
         self.key = key
-        self.is_binary = is_binary
 
-    def preprocess(self, is_binary):
+    def preprocess(self, is_binary=False):
         # Preprocess text
         if(is_binary):
             self.text = str(self.text)
