@@ -20,7 +20,7 @@ class Text(Resource):
         output = request.args.get('output')
         if output == 'file' and status_code == 200:
             filename = "result.txt"
-            processor.output_to_file(filename, result)
+            processor.output_to_file(filename, result, "w+")
             return send_file(filename, mimetype='text/plain', attachment_filename=filename, as_attachment=True)
         else:
             return make_response(jsonify({'result': result}), status_code)
@@ -35,7 +35,7 @@ class FileText(Resource):
         output = request.args.get('output')
         if output == 'file' and status_code == 200:
             filename = "result.txt"
-            processor.output_to_file(filename, result)
+            processor.output_to_file(filename, result, "w+")
             return send_file(filename, mimetype='text/plain', attachment_filename=filename, as_attachment=True)
         else:
             return make_response(jsonify({'result': result}), status_code)
@@ -44,13 +44,21 @@ class FileBinary(Resource):
     def post(self): 
         data = request.form
         file = request.files['text']
-        readed = file.read()
+        if data['mode'] == 'encrypt':
+            readed = file.read()
+        else:
+            readed = processor.convert_file_to_string(file)
         result, status_code = processor.request_processor(readed, data['key'], data['algorithm'], data['mode'], is_binary = True)
         
         output = request.args.get('output')
         if output == 'file' and status_code == 200:
-            filename = "result.txt"
-            processor.output_to_file(filename, result)
-            return send_file(filename, mimetype='text/plain', attachment_filename=filename, as_attachment=True)
+            filename = "result"
+
+            if data['mode'] == 'encrypt':
+                processor.output_to_file(filename, result, "w+")
+            else:
+                processor.output_to_file(filename, result, "wb+")
+
+            return send_file(filename, attachment_filename=filename, as_attachment=True)
         else:
             return make_response(jsonify({'result': result}), status_code)

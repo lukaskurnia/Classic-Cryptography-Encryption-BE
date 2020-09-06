@@ -127,6 +127,14 @@ curl --location --request POST 'localhost:5000/text' \
 --form 'algorithm=super' \
 --form 'mode=encrypt'
 ```
+### Enigma
+```bash
+curl --location --request POST 'localhost:5000/text' \
+--form 'key=sony' \
+--form 'text=helloworld' \
+--form 'algorithm=enigma' \
+--form 'mode=encrypt'
+```
 
 ## File Text
 ```bash

@@ -6,6 +6,7 @@ from src.algorithm.vigenere_full import FullVigenere
 from src.algorithm.vigenere_auto import AutoKeyVigenere
 from src.algorithm.vigenere_extended import ExtendedVigenere
 from src.algorithm.super import SuperEncryption
+from src.algorithm.enigma import Enigma
 
 def request_processor(text, key, algorithm, mode, is_binary):
     try:
@@ -32,6 +33,7 @@ def algorithm_processor(text, key, algorithm, mode, is_binary):
         "vigenere_auto": AutoKeyVigenere(text,key),
         "vigenere_extended": ExtendedVigenere(text,key),
         "super": SuperEncryption(text,key),
+        "enigma": Enigma(text,key),
     }
 
     algo_invalid = "algorithm invalid"
@@ -43,7 +45,7 @@ def algorithm_processor(text, key, algorithm, mode, is_binary):
         if algorithm != "vigenere_extended":
             raise Exception(f"binary file can't be {mode}ed with {algorithm}", 400) 
 
-        obj.preprocess(is_binary)
+        obj.preprocess(is_binary, mode)
     else:
         obj.preprocess()
 
@@ -61,8 +63,8 @@ def convert_file_to_string(data):
     decoded = file.decode('utf-8')
     return decoded.replace('\n', '')
 
-def output_to_file(filename, content):
-    f = open(filename,"w+")
+def output_to_file(filename, content, mode):
+    f = open(filename, mode)
     f.write(content)
     f.close()
     

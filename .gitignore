@@ -2,6 +2,7 @@
 virtualenv/
 bin/
 include/
+img.jpeg
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
