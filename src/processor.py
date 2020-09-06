@@ -6,7 +6,7 @@ from src.algorithm.vigenere_full import FullVigenere
 from src.algorithm.vigenere_auto import AutoKeyVigenere
 from src.algorithm.vigenere_extended import ExtendedVigenere
 from src.algorithm.super import SuperEncryption
-from src.algorithm.enigma import Enigma
+# from src.algorithm.enigma import Enigmamak
 
 def request_processor(text, key, algorithm, mode, is_binary):
     try:
@@ -33,7 +33,7 @@ def algorithm_processor(text, key, algorithm, mode, is_binary):
         "vigenere_auto": AutoKeyVigenere(text,key),
         "vigenere_extended": ExtendedVigenere(text,key),
         "super": SuperEncryption(text,key),
-        "enigma": Enigma(text,key),
+        # "enigma": Enigma(text,key),
     }
 
     algo_invalid = "algorithm invalid"
