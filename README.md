@@ -109,6 +109,24 @@ curl --location --request POST 'localhost:5000/text' \
 --form 'algorithm=vigenere_auto' \
 --form 'mode=encrypt'
 ```
+### Extended Vigenere
+
+```bash
+curl --location --request POST 'localhost:5000/text' \
+--form 'key=indo' \
+--form 'text=negara penghasil minyak' \
+--form 'algorithm=vigenere_extended' \
+--form 'mode=encrypt'
+```
+
+### SuperEncryption
+```bash
+curl --location --request POST 'localhost:5000/text' \
+--form 'key=sony' \
+--form 'text=helloworld' \
+--form 'algorithm=super' \
+--form 'mode=encrypt'
+```
 
 ## File Text
 ```bash

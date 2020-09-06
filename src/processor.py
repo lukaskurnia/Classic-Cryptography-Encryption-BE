@@ -5,6 +5,7 @@ from src.algorithm.vigenere import Vigenere
 from src.algorithm.vigenere_full import FullVigenere
 from src.algorithm.vigenere_auto import AutoKeyVigenere
 from src.algorithm.vigenere_extended import ExtendedVigenere
+from src.algorithm.super import SuperEncryption
 
 def request_processor(text, key, algorithm, mode, is_binary):
     try:
@@ -30,6 +31,7 @@ def algorithm_processor(text, key, algorithm, mode, is_binary):
         "vigenere_full": FullVigenere(text,key),
         "vigenere_auto": AutoKeyVigenere(text,key),
         "vigenere_extended": ExtendedVigenere(text,key),
+        "super": SuperEncryption(text,key),
     }
 
     algo_invalid = "algorithm invalid"
