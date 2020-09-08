@@ -75,7 +75,11 @@ class Hill:
         k = np.asmatrix(self.key)
         k_det = round(np.linalg.det(k))
         det_inverse = general.mod_inverse(k_det % 26, 26)
-        k_inverse = np.linalg.inv(k)
+        try: 
+            k_inverse = np.linalg.inv(k)
+        except np.linalg.LinAlgError:
+            raise Exception("this is singular matrix, therefore this matrix doesn't have a determinant", 400)
+
         k_adjoint = k_inverse * k_det
         self.key = k_adjoint.tolist()
 
